@@ -1,0 +1,53 @@
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-area {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Force the two-column layout for print */
+    .row-print-two-cols {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .row-print-two-cols>div {
+        width: 48%;
+    }
+
+    .print-area input,
+    .print-area select {
+        border: 1px solid #000 !important;
+        box-shadow: none !important;
+    }
+
+    .print-area table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+
+    .print-area table th,
+    .print-area table td {
+        border: 1px solid #000 !important;
+        padding: 8px;
+    }
+
+    .logo-preview {
+        display: block;
+        margin-bottom: 1rem;
+    }
+}
+
+.logo-preview {
+    max-width: 200px;
+    max-height: 100px;
+}
