@@ -1,53 +1,140 @@
 @media print {
     body {
         -webkit-print-color-adjust: exact;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        line-height: 1.4;
+        text-align: center;
+        /* Center-align the body content */
     }
 
-    .no-print {
+    .no-print,
+    button,
+    input[type="file"] {
         display: none !important;
     }
 
     .print-area {
-        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+        /* Center the print area */
+        padding: 20px;
+        background: #fff;
+    }
+
+    input,
+    textarea,
+    select {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+        font-size: 10px;
+    }
+
+    .form-control,
+    .form-select {
+        padding: 0.5rem !important;
+        font-size: 10px;
         width: 100%;
     }
 
-    /* Force the two-column layout for print */
-    .row-print-two-cols {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-between;
-        gap: 2rem;
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto 20px;
+        /* Center table and add space below */
+        table-layout: auto;
+        /* Allow table to grow in width */
     }
 
-    .row-print-two-cols>div {
-        width: 48%;
-    }
-
-    .print-area input,
-    .print-area select {
-        border: 1px solid #000 !important;
-        box-shadow: none !important;
-    }
-
-    .print-area table {
-        width: 100% !important;
-        border-collapse: collapse !important;
-    }
-
-    .print-area table th,
-    .print-area table td {
-        border: 1px solid #000 !important;
+    th,
+    td {
+        border: 1px solid black !important;
         padding: 8px;
+        text-align: left;
+        font-size: 10px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    td {
+        font-size: 10px;
+    }
+
+    .text-end {
+        text-align: right !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .fw-bold {
+        font-weight: bold;
     }
 
     .logo-preview {
-        display: block;
-        margin-bottom: 1rem;
+        max-width: 150px;
+        margin-top: 10px;
     }
-}
 
-.logo-preview {
-    max-width: 200px;
-    max-height: 100px;
+    .row,
+    .container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .mt-3,
+    .mb-3,
+    .my-4 {
+        margin: 0 !important;
+    }
+
+    .btn-close {
+        display: none !important;
+    }
+
+    .text-end.fw-bold {
+        font-size: 12px;
+        padding-right: 10px;
+    }
+
+    .btn-secondary {
+        display: none !important;
+    }
+
+    /* Center client and company details in two columns */
+    .col-md-6 {
+        width: 48%;
+        margin-right: 2%;
+        display: inline-block;
+        /* Align the two columns side by side */
+        vertical-align: top;
+    }
+
+    /* Adjust spacing between client and company sections */
+    .col-md-6 h5 {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    /* Center-align all content */
+    .col-md-6 {
+        text-align: center;
+        /* Center the text in each column */
+    }
+
+    /* Ensure the table grows */
+    td input,
+    td select {
+        width: 100%;
+    }
+
+    /* Adjust font size for a consistent look */
+    .col-md-6 {
+        font-size: 12px;
+    }
 }
