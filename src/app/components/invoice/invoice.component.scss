@@ -1,140 +1,232 @@
-@media print {
-    body {
-        -webkit-print-color-adjust: exact;
-        font-family: Arial, sans-serif;
-        font-size: 10px;
-        line-height: 1.4;
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* Jumbotron (Header Section) */
+.jumbotron {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+/* Left Side */
+.left-side {
+    margin-right: 20px;
+}
+
+.left-side input {
+    margin-bottom: 10px;
+    /* Add space between each input */
+
+}
+
+.left-side h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.left-side p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.left-side b {
+    font-weight: normal;
+}
+
+/* Right Side */
+.right-side {
+    text-align: center;
+    flex: 0.5;
+}
+
+.right-side input {
+    margin-bottom: 10px;
+    /* Add space between each input */
+
+}
+
+.company-logo {
+    max-width: 120px;
+    margin-bottom: 15px;
+}
+
+.right-side p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f2f2f2;
+}
+
+/* Table Discount */
+/* Table Discount */
+.discount-container {
+    margin-top: 20px;
+    /* Space between item table and discount table */
+    display: block;
+    /* Changed from flex to block */
+}
+
+.table-discount {
+    width: 100%;
+    /* Ensures full width usage */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table-discount td {
+    padding: 8px;
+    text-align: right;
+}
+
+.total-label {
+    font-weight: bold;
+    text-align: left;
+}
+
+
+/* Form Controls */
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.d-flex {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.d-flex input,
+.d-flex select {
+    width: 50%;
+    padding: 5px;
+}
+
+.print-button {
+    text-align: right;
+}
+
+.style-des-discount {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+/* Mobile Adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+    .jumbotron {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-side,
+    .right-side {
         text-align: center;
-        /* Center-align the body content */
     }
 
-    .no-print,
-    button,
-    input[type="file"] {
-        display: none !important;
+    .company-logo {
+        width: 100px;
+        /* Make logo slightly bigger */
     }
 
-    .print-area {
-        width: 100%;
-        margin: 0 auto;
-        /* Center the print area */
-        padding: 20px;
-        background: #fff;
+    .table {
+        font-size: 14px;
+        /* Increase readability */
     }
 
-    input,
-    textarea,
-    select {
-        border: 1px solid #ccc !important;
-        box-shadow: none !important;
-        background-color: transparent !important;
-        font-size: 10px;
+    .table th,
+    .table td {
+        padding: 6px 8px;
+        /* More spacing */
     }
 
-    .form-control,
-    .form-select {
-        padding: 0.5rem !important;
-        font-size: 10px;
-        width: 100%;
+    .btn {
+        padding: 6px 12px;
+        /* Bigger button for better touch */
+        font-size: 14px;
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0 auto 20px;
-        /* Center table and add space below */
-        table-layout: auto;
-        /* Allow table to grow in width */
+    /* Fix quantity & unit alignment */
+    .d-flex {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: 150px;
     }
 
-    th,
-    td {
-        border: 1px solid black !important;
-        padding: 8px;
-        text-align: left;
-        font-size: 10px;
+    .d-flex input,
+    .d-flex select {
+        flex: 1;
+        /* Makes them equal width */
+        min-width: 45%;
     }
 
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
+    .d-flex input {
+        padding: 10px;
+        font-size: 16px;
     }
 
-    td {
-        font-size: 10px;
+    /* Improve signature layout */
+    .signature {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .text-end {
-        text-align: right !important;
-    }
-
-    .text-center {
-        text-align: center !important;
-    }
-
-    .fw-bold {
-        font-weight: bold;
-    }
-
-    .logo-preview {
-        max-width: 150px;
-        margin-top: 10px;
-    }
-
-    .row,
-    .container {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .mt-3,
-    .mb-3,
-    .my-4 {
-        margin: 0 !important;
-    }
-
-    .btn-close {
-        display: none !important;
-    }
-
-    .text-end.fw-bold {
-        font-size: 12px;
-        padding-right: 10px;
-    }
-
-    .btn-secondary {
-        display: none !important;
-    }
-
-    /* Center client and company details in two columns */
-    .col-md-6 {
-        width: 48%;
-        margin-right: 2%;
-        display: inline-block;
-        /* Align the two columns side by side */
-        vertical-align: top;
-    }
-
-    /* Adjust spacing between client and company sections */
-    .col-md-6 h5 {
-        font-size: 12px;
-        margin-bottom: 10px;
-    }
-
-    /* Center-align all content */
-    .col-md-6 {
+    .signature div {
         text-align: center;
-        /* Center the text in each column */
-    }
-
-    /* Ensure the table grows */
-    td input,
-    td select {
         width: 100%;
-    }
-
-    /* Adjust font size for a consistent look */
-    .col-md-6 {
-        font-size: 12px;
     }
 }

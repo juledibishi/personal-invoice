@@ -1,134 +1,131 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet">
-<div class="container my-4 print-area">
-    <h2 class="mb-4">Invoice Form</h2>
-
-    <div class="row mb-4 no-print">
-        <div class="col-md-6">
-            <input type="file"
-                   id="companyLogo"
+<div class="container">
+    <section class="jumbotron">
+        <div class="left-side">
+            <h2>Oferta për:</h2>
+            <input type="text"
+                   [formControl]="clientName"
                    class="form-control"
-                   accept="image/*">
-            <small class="form-text text-muted">Upload your company logo. Recommended size: 150x150px to
-                400x400px.</small>
-            <div class="mt-3">
-                <img id="logoPreview"
-                     class="logo-preview">
-            </div>
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-between mb-3 flex-wrap">
-        <div class="flex-fill me-2">
-            <label>Invoice Number</label>
+                   placeholder="Emri dhe Mbiemri" />
             <input type="text"
-                   class="form-control">
-        </div>
-        <div class="flex-fill ms-2">
-            <label>Invoice Date</label>
-            <input type="date"
-                   class="form-control">
-        </div>
-    </div>
-
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <h5>Client Details</h5>
-            <input type="text"
-                   class="form-control mb-2"
-                   placeholder="Client Name">
-            <input type="text"
-                   class="form-control mb-2"
-                   placeholder="Client Phone">
-            <input type="text"
+                   [formControl]="clientAddress"
                    class="form-control"
-                   placeholder="Client Address">
-        </div>
-        <div class="col-md-6">
-            <h5>Company Details</h5>
+                   placeholder="Adresa" />
             <input type="text"
-                   class="form-control mb-2"
-                   placeholder="Company Name">
-            <input type="text"
-                   class="form-control mb-2"
-                   placeholder="Company Phone">
-            <input type="text"
+                   [formControl]="clientPhone"
                    class="form-control"
-                   placeholder="Company Address">
+                   placeholder="Telefoni" />
         </div>
-    </div>
+        <div class="right-side">
+            <input type="text"
+                   [formControl]="companyName"
+                   class="form-control"
+                   placeholder="Emri kompanisë" />
+            <input type="text"
+                   [formControl]="companyAddress"
+                   class="form-control"
+                   placeholder="Adresa" />
+            <input type="text"
+                   [formControl]="companyPhone"
+                   class="form-control"
+                   placeholder="Telefoni" />
+            <p> {{ today | date: 'dd/MM/yyyy' }}</p>
+        </div>
+    </section>
 
-    <h5 class="mb-3">Items</h5>
-    <div class="table-responsive">
-        <table class="table table-bordered align-middle">
-            <thead class="table-light">
+    <form [formGroup]="invoiceForm">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Unit</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th class="no-print"></th>
+                    <th>Artikulli</th>
+                    <th>Përshkrimi</th>
+                    <th>Sasia</th>
+                    <th>Çmimi</th>
+                    <th>Gjithësej</th>
+                    <th>Fshij</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td><input class="form-control"></td>
-                    <td><input class="form-control"></td>
-                    <td><input type="number"
-                               class="form-control"></td>
+            <tbody formArrayName="items">
+                <tr *ngFor="let item of items.controls; let i = index"
+                    [formGroupName]="i">
+                    <td><input type="text"
+                               formControlName="name"
+                               class="form-control" /></td>
+                    <td><input type="text"
+                               formControlName="description"
+                               class="form-control" /></td>
                     <td>
-                        <select class="form-select">
-                            <option>pcs</option>
-                            <option>kg</option>
-                            <option>m</option>
-                            <option>liter</option>
-                            <option>m²</option>
-                        </select>
+                        <div class="d-flex">
+                            <input type="number"
+                                   formControlName="qty"
+                                   class="form-control" />
+                            <select formControlName="unit"
+                                    class="form-control">
+                                <option value="pcs">pcs</option>
+                                <option value="kg">kg</option>
+                                <option value="m">m</option>
+                                <option value="liter">liter</option>
+                                <option value="m2">m²</option>
+                            </select>
+                        </div>
                     </td>
                     <td><input type="number"
-                               class="form-control"></td>
-                    <td><input class="form-control"
-                               readonly></td>
-                    <td class="text-center no-print">
-                        <button class="btn-close"></button>
-                    </td>
+                               formControlName="price"
+                               class="form-control" /></td>
+                    <td>{{ item.get('qty')?.value * item.get('price')?.value | number:'1.2-2' }} €</td>
+                    <td><button type="button"
+                                class="btn btn-danger"
+                                (click)="removeItem(i)"> &times;</button></td>
+                </tr>
+                <tr>
+                    <td><button type="button"
+                                class="btn btn-primary"
+                                (click)="addItem()">Shto Artikull</button></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total :</td>
+                    <td>{{ getTotal() | number:'1.2-2' }} €</td>
                 </tr>
             </tbody>
         </table>
-        <div class="text-end fw-bold my-3">Total: $0.00</div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label>Additional Notes</label>
+    </form>
+    <br>
+    <div class="style-des-discount">
+        <div>
+            <span>Përshkrim</span><br>
             <textarea class="form-control"
-                      rows="3"></textarea>
+                      rows="4"
+                      [formControl]="summary">
+</textarea>
+
         </div>
-        <div class="col-md-6">
-            <label>Discount (%)</label>
-            <input type="number"
-                   class="form-control">
-            <div class="mt-2"><strong>Discounted Total:</strong> $0.00</div>
+        <div class="discount-container">
+            <table class="table-discount table-hover">
+                <tbody>
+                    <tr>
+                        <td class="total-label">Zbritje (%) :</td>
+                        <td>
+                            <input type="number"
+                                   min="0"
+                                   max="100"
+                                   [formControl]="discountForm"
+                                   (input)="calculateTotalPrice()"
+                                   class="form-control"
+                                   placeholder="Enter discount %" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="total-label">Totali pas Zbritjes :</td>
+                        <td>{{ totalPriceAfterDiscount }} €</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+
     </div>
 
-    <div class="text-end mt-3 no-print">
-        <button class="btn btn-success">Add Item</button>
+    <div class="print-button">
+        <button class="btn btn-primary"
+                (click)="printInvoice()">Print</button>
     </div>
-
-    <div class="text-center no-print">
-        <button class="btn btn-secondary"
-                onclick="window.print()">Print Invoice</button>
-    </div>
-
 </div>
-
-<script>
-    document.getElementById('companyLogo').addEventListener('change', function (event) {
-        const reader = new FileReader();
-        reader.onload = () => document.getElementById('logoPreview').src = reader.result;
-        reader.readAsDataURL(event.target.files[0]);
-    });
-</script>
