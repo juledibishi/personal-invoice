@@ -84,16 +84,17 @@ export class InvoiceComponent implements OnInit {
       <section class="jumbotron">
           <div class="left-side">
               <h2>Oferta për:</h2>
-              <p><strong>Emri:</strong> ${invoiceData.clientName}</p>
-              <p><strong>Adresa:</strong> ${invoiceData.clientAddress}</p>
-              <p><strong>Telefoni:</strong> ${invoiceData.clientPhone}</p>
+              ${invoiceData.clientName}</p>
+              ${invoiceData.clientAddress}</p>
+             ${invoiceData.clientPhone}</p>
           </div>
   
           <div class="right-side">
-              <p><strong>Emri Kompanisë:</strong> ${invoiceData.companyName}</p>
-              <p><strong>Adresa:</strong> ${invoiceData.companyAddress}</p>
-              <p><strong>Telefoni:</strong> ${invoiceData.companyPhone}</p>
-              <p><strong>Data:</strong> ${invoiceData.today}</p>
+            <h2>Kompania:</h2>
+             ${invoiceData.companyName}</p>
+            ${invoiceData.companyAddress}</p>
+             ${invoiceData.companyPhone}</p>
+            ${invoiceData.today}</p>
           </div>
       </section>
   
@@ -136,11 +137,11 @@ export class InvoiceComponent implements OnInit {
                 ${summaryRow}
         <div class="signature">
             <div>
-                <span>Pronari</span><br><br><br>
+                <span>Klienti</span><br><br><br>
                 <span>_______________________</span>
             </div>
             <div>
-                <span>Klienti</span><br><br><br>
+                <span>Kompania</span><br><br><br>
                 <span>_______________________</span>
             </div>
         </div>
